@@ -1,0 +1,33 @@
+from aiogram import Router
+from aiogram.filters import Command
+from aiogram.types import Message
+from sqlalchemy import select
+from sqlalchemy.ext.asyncio import AsyncSession
+
+from ..db import User
+
+router = Router()
+
+
+@router.message(Command(commands="add_me"))
+async def cmd_start(message: Message, session: AsyncSession) -> None:
+    user = await session.scalar(select(User).where(User.id == message.from_user.id))
+    if user is None:
+        user = User(id=message.from_user.id, name=message.from_user.full_name)
+    else:
+        await message.answer(text="You are already added")
+        return
+    session.add(user)
+    await session.commit()
+    await message.answer(text="Success!")
+
+
+@router.message(Command(commands="del_me"))
+async def cmd_start(message: Message, session: AsyncSession) -> None:
+    user = await session.scalar(select(User).where(User.id == message.from_user.id))
+    if user is None:
+        await message.answer(text="You are already deleted")
+        return
+    await session.delete(user)
+    await session.commit()
+    await message.answer(text="Success!")
