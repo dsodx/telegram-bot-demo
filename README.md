@@ -1,6 +1,4 @@
 # Telegram Bot Demo
-
----
 ## Run
 ```shell
 # first run:
@@ -8,12 +6,10 @@
 # docker compose run bot alembic upgrade head
 docker compose up -d
 ```
----
 ## Stack:
 * Python 3.11.3
 * PostgreSQL 15.2
 * Aiogram 3.0.0b7
 * SQLAlchemy 2.0.15
 * Asyncpg 0.27.0 (as db driver)
----
 ### ENJOY!
