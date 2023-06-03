@@ -7,7 +7,8 @@ from aiogram.types import BotCommand
 def get_default_commands() -> List[BotCommand]:
     return [
         BotCommand(command="start", description="Restart the bot"),
-        BotCommand(command="help", description="Show help")
+        BotCommand(command="help", description="Show help"),
+        BotCommand(command="is_owner", description="Check: is you owner")
     ]
 
 
