@@ -1,5 +1,14 @@
 # Telegram Bot Demo
-## Run
+## Setup
+Fill and rename this files:
+```
+│   .env.dist
+│   alembic.ini.dist
+│
+├───psql
+│       .env.dist
+```
+Then run:
 ```shell
 # first run:
 # docker compose up -d postgres
