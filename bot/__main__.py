@@ -3,13 +3,15 @@ import asyncio
 
 from aiogram import Bot, Dispatcher
 
+from .config import config
+
 logger = logging.getLogger(name=__name__)
 
 
 async def main() -> None:
     logging.basicConfig(level=logging.INFO)
 
-    bot = Bot(token=...)
+    bot = Bot(token=config.bot_token.get_secret_value())
     dp = Dispatcher()
 
     logger.warning(msg="Starting bot...")
