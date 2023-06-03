@@ -24,12 +24,6 @@ async def main() -> None:
     engine = create_async_engine(url=config.postgres.dsn)
     session_pool = async_sessionmaker(bind=engine, expire_on_commit=False)
 
-    # temp!!!
-    from .db import Base
-    async with engine.begin() as connection:
-        await connection.run_sync(Base.metadata.drop_all)
-        await connection.run_sync(Base.metadata.create_all)
-
     bot = Bot(token=config.bot_token.get_secret_value(), parse_mode=ParseMode.HTML)
     dp = Dispatcher()
     dp["config"] = config
