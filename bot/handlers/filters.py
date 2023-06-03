@@ -1,7 +1,7 @@
 from aiogram import Router, F
+from aiogram.enums import ChatType
 from aiogram.filters import Command
 from aiogram.types import Message
-from aiogram.enums import ChatType
 
 from ..filters import IsOwnerFilter
 
