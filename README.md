@@ -17,8 +17,9 @@ docker compose up -d
 ```
 ## Stack:
 * Python 3.11.3
-* PostgreSQL 15.2
 * Aiogram 3.0.0b7
+* PostgreSQL 15.2
 * SQLAlchemy 2.0.15
-* Asyncpg 0.27.0 (as db driver)
+* Alembic 1.11.1
+* Asyncpg 0.27.0 (as driver)
 ### ENJOY!
