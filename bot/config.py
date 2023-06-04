@@ -1,5 +1,6 @@
-from pydantic import BaseSettings, BaseModel, SecretStr, PostgresDsn, RedisDsn
 from enum import StrEnum
+
+from pydantic import BaseSettings, BaseModel, SecretStr, PostgresDsn, RedisDsn
 
 
 class FSMStorageType(StrEnum):
