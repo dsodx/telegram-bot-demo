@@ -21,7 +21,7 @@ async def on_startup(bot: Bot, dp: Dispatcher, session_pool: async_sessionmaker)
 
 
 async def main() -> None:
-    logging.basicConfig(level=logging.INFO)
+    logging.basicConfig(level=logging.WARNING)
 
     engine = create_async_engine(url=config.postgres.dsn)
     session_pool = async_sessionmaker(bind=engine, expire_on_commit=False)
