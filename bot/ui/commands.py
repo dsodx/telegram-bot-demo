@@ -8,7 +8,10 @@ def get_default_commands() -> List[BotCommand]:
     return [
         BotCommand(command="start", description="Restart the bot"),
         BotCommand(command="help", description="Show help"),
-        BotCommand(command="is_owner", description="Check: is you owner")
+        BotCommand(command="is_owner", description="Check: is you owner"),
+        BotCommand(command="add_me", description="Add me in db"),
+        BotCommand(command="del_me", description="Delete me from db"),
+        BotCommand(command="reg", description="Run register process")
     ]
 
 
