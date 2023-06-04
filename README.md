@@ -2,11 +2,10 @@
 ## Setup
 Fill and rename this files:
 ```
-│  .env.dist
-│  alembic.ini.dist
-│
-├───psql
-│    .env.dist
+├── .env
+├── alembic.ini
+├── psql
+│   ├── .env
 ```
 Then run:
 ```shell
