@@ -2,14 +2,15 @@
 ## Setup
 Fill and rename this files:
 ```
-│   .env.dist
-│   alembic.ini.dist
+│  .env.dist
+│  alembic.ini.dist
 │
 ├───psql
-│       .env.dist
+│    .env.dist
 ```
 Then run:
 ```shell
+docker compose build
 # first run:
 # docker compose up -d postgres
 # docker compose run bot alembic upgrade head

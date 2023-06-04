@@ -1,0 +1,10 @@
+.idea/
+.git/
+venv/
+psql/
+
+.env.dist
+alembic.ini.dist
+.gitignore
+LICENSE
+README.md
