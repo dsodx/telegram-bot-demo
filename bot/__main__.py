@@ -13,7 +13,7 @@ from .ui import setup_default_commands
 logger = logging.getLogger(name=__name__)
 
 
-async def on_startup(bot: Bot, dp: Dispatcher, session_pool: async_sessionmaker) -> None:
+async def startup(bot: Bot, dp: Dispatcher, session_pool: async_sessionmaker) -> None:
     await bot.delete_webhook(drop_pending_updates=True)
     await setup_default_commands(bot=bot)
     setup_routers(dp=dp, session_pool=session_pool)
@@ -31,7 +31,7 @@ async def main() -> None:
     dp = Dispatcher(storage=storage)
     dp["config"] = config
 
-    await on_startup(bot=bot, dp=dp, session_pool=session_pool)
+    await startup(bot=bot, dp=dp, session_pool=session_pool)
 
     logger.warning(msg="Starting bot...")
     await dp.start_polling(bot, allowed_updates=dp.resolve_used_update_types())
