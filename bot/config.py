@@ -20,7 +20,7 @@ class Settings(BaseSettings):
     owner_id: int
 
     postgres: Postgres
-    redis: Redis
+    redis: Redis | None
     fsm_storage_type: FSMStorageType
 
     class Config:
