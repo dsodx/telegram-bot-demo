@@ -3,11 +3,10 @@ import logging
 
 from aiogram import Bot, Dispatcher
 from aiogram.enums import ParseMode
-from aiogram.fsm.storage.memory import MemoryStorage
 from aiogram.fsm.storage.redis import RedisStorage
 from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker
 
-from .config import config, FSMStorageType
+from .config import config
 from .handlers import setup_routers
 from .ui import setup_default_commands
 
@@ -26,10 +25,7 @@ async def main() -> None:
     engine = create_async_engine(url=config.postgres.dsn)
     session_pool = async_sessionmaker(bind=engine, expire_on_commit=False)
 
-    if config.fsm_storage_type == FSMStorageType.REDIS:
-        storage = RedisStorage.from_url(url=config.redis.dsn)
-    else:
-        storage = MemoryStorage()
+    storage = RedisStorage.from_url(url=config.redis.dsn)
 
     bot = Bot(token=config.bot_token.get_secret_value(), parse_mode=ParseMode.HTML)
     dp = Dispatcher(storage=storage)

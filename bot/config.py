@@ -1,11 +1,4 @@
-from enum import StrEnum
-
 from pydantic import BaseSettings, BaseModel, SecretStr, PostgresDsn, RedisDsn
-
-
-class FSMStorageType(StrEnum):
-    MEMORY = "memory"
-    REDIS = "redis"
 
 
 class Postgres(BaseModel):
@@ -21,8 +14,7 @@ class Settings(BaseSettings):
     owner_id: int
 
     postgres: Postgres
-    redis: Redis | None
-    fsm_storage_type: FSMStorageType
+    redis: Redis
 
     class Config:
         env_file = ".env"

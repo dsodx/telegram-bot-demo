@@ -7,4 +7,4 @@ def get_check_kb() -> ReplyKeyboardMarkup:
     builder.button(text="Correct")
     builder.button(text="Incorrect")
     builder.adjust(2)
-    return builder.as_markup()
+    return builder.as_markup(resize_keyboard=True)
