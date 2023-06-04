@@ -2,6 +2,7 @@
 .git/
 venv/
 psql/
+redis/
 
 .env.dist
 alembic.ini.dist
