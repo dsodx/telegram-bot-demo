@@ -17,6 +17,7 @@ docker compose up -d
 ```
 ## Stack:
 * Python 3.11.3
+* Docker Compose 2.18.1
 * Aiogram 3.0.0b7
 * Redis 4.5.5
 * PostgreSQL 15.2
