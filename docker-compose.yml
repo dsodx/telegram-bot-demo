@@ -4,6 +4,11 @@ services:
   bot:
     build: .
     restart: always
+    environment:
+      - BOT_TOKEN
+      - OWNER_ID
+      - POSTGRES_DSN
+      - REDIS_DSN
     depends_on:
       postgres:
         condition: service_healthy
@@ -13,7 +18,13 @@ services:
   postgres:
     image: postgres:15.3
     restart: always
-    env_file: ./.env
+    environment:
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
+      - POSTGRES_DB
+      - APP_USER
+      - APP_PASSWORD
+      - APP_DB
     healthcheck:
       test: "pg_isready -U $APP_USER -d $APP_DB"
       interval: 5s

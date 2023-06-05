@@ -17,7 +17,7 @@ class Settings(BaseSettings):
     redis: Redis
 
     class Config:
-        env_file = ".env"
+        # env_file = ".env"
         env_nested_delimiter = "_"
 
 
