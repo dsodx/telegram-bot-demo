@@ -3,7 +3,9 @@ from aiogram.filters import Command
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
 from aiogram.types import Message, ReplyKeyboardRemove
+from sqlalchemy.ext.asyncio import AsyncSession
 
+from ..db import UserProfile, get_user_profile, update_user_profile
 from ..ui import get_check_kb
 
 router = Router()
@@ -63,10 +65,30 @@ async def name_correct(message: Message) -> None:
 
 
 @router.message(Register.check, F.text.lower().in_(("correct", "incorrect")))
-async def name_correct(message: Message, state: FSMContext) -> None:
+async def name_correct(message: Message, state: FSMContext, session: AsyncSession) -> None:
     if message.text.lower() == "incorrect":
         await message.answer(text="OK. Input your name again", reply_markup=ReplyKeyboardRemove())
         await state.set_state(state=Register.name)
         return
-    await message.answer(text="OK.", reply_markup=ReplyKeyboardRemove())
+    data = await state.get_data()
+    user = await get_user_profile(session=session, user_id=message.from_user.id)
+    if user is None:
+        user = UserProfile(id=message.from_user.id, **data)
+        session.add(user)
+    else:
+        await update_user_profile(session=session, user_id=message.from_user.id, data=data)
+    await session.commit()
     await state.clear()
+    await message.answer(text="OK.", reply_markup=ReplyKeyboardRemove())
+
+
+@router.message(Command(commands="my_reg"))
+async def my_reg_cmd(message: Message, session: AsyncSession) -> None:
+    user = await get_user_profile(session=session, user_id=message.from_user.id)
+    if user is None:
+        await message.answer(text="You haven't reg")
+        return
+    await message.answer(text=f"Your reg:\n"
+                              f"Name: {user.name}\n"
+                              f"Last Name: {user.last_name}\n"
+                              f"Age: {user.age}")

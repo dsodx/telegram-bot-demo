@@ -12,3 +12,13 @@ class User(Base):
     n: Mapped[int] = mapped_column(INTEGER, primary_key=True)
     id: Mapped[int] = mapped_column(BIGINT, unique=True, nullable=False)
     name: Mapped[str] = mapped_column(VARCHAR, nullable=False)
+
+
+class UserProfile(Base):
+    __tablename__ = "users_profiles"
+
+    n: Mapped[int] = mapped_column(INTEGER, primary_key=True)
+    id: Mapped[int] = mapped_column(BIGINT, unique=True, nullable=False)
+    name: Mapped[str] = mapped_column(VARCHAR, nullable=False)
+    last_name: Mapped[str] = mapped_column(VARCHAR, nullable=False)
+    age: Mapped[str] = mapped_column(INTEGER, nullable=False)

@@ -1,8 +1,11 @@
-from .models import Base, User
-from .requests import get_user
+from .models import Base, User, UserProfile
+from .requests import get_user, get_user_profile, update_user_profile
 
 __all__ = (
     "Base",
     "User",
-    "get_user"
+    "UserProfile",
+    "get_user",
+    "get_user_profile",
+    "update_user_profile"
 )
