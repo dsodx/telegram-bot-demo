@@ -6,4 +6,3 @@ psql/data/
 redis/data/
 
 .env
-alembic.ini

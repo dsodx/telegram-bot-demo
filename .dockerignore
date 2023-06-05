@@ -5,7 +5,6 @@ psql/
 redis/
 
 .env.dist
-alembic.ini.dist
 .gitignore
 LICENSE
 README.md
